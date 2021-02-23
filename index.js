@@ -149,3 +149,6 @@ ghosts = [
     new Ghost('inky', 351, 300),
     new Ghost('clyde', 379, 500)
 ]
+
+//draw my ghosts onto my grid
+ghosts.forEach(ghost => squares[ghost.startIndex].classList.add(ghost.className))
