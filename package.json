@@ -1,0 +1,24 @@
+{
+  "name": "pac-man",
+  "version": "1.0.0",
+  "description": "retro pac man game using JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinayak-singh5302/pac-man.git"
+  },
+  "author": "Vinayak Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinayak-singh5302/pac-man/issues"
+  },
+  "homepage": "https://github.com/vinayak-singh5302/pac-man#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
