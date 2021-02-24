@@ -48,11 +48,16 @@ html, body {
 }
 
 .inky {
-    background-color: blue;
+    background-color: aqua;
     border: none;
 }
 
 .clyde {
     background-color: orange;
+    border: none;
+}
+
+.scared-ghost {
+    background-color: aquamarine;
     border: none;
 }
