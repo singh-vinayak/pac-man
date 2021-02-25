@@ -1,6 +1,46 @@
-html, body {
-    margin: 10;
-    padding: 10;
+body {
+    padding: 7% 0 7% 0;;
+    /* font-family: 'Lobster Two', cursive; */
+    background-image: linear-gradient(135deg,black 60%,grey);
+}
+
+/* .container{
+    font-weight: 700;
+    font-style: bolder;
+} */
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.row-1{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+.row-2{
+    display: flex;
+    justify-content: center;
+}
+
+.row-3{
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+}
+
+#restartButton{
+    padding:1.125em;
+    background-color: orange;
+    border-radius: 10px;
+    font-weight: bolder;
+    cursor:pointer;
+    transition: 500ms;
+}
+#restartButton:hover{
+    transform: scale(1.5);
+    background-color: red;
+    color: antiquewhite;
 }
 
 .grid {
@@ -9,6 +49,7 @@ html, body {
     width: 420px;
     height: 420px;
     border: solid black;
+    background-color: white;
 }
 
 .grid div {

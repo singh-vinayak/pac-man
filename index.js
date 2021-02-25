@@ -1,6 +1,7 @@
 const width = 28
 const grid = document.querySelector('.grid')
 const scoreDisplay = document.getElementById('score')
+const restartButton=document.getElementById('restartButton')
 let squares = []
 let score = 0
 
@@ -41,6 +42,8 @@ const layout = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 ]
 
+//hiding the restart button and score display
+restartButton.style.display="none"
 //create board
 function createBoard() {
     //for loop 
@@ -79,7 +82,7 @@ function control(e) {
     squares[pacmanCurrentIndex].classList.remove('pacman')
     switch (e.keyCode) {
         case 40:
-            console.log('pressed down')
+            //console.log('pressed down')
             if (
                 !squares[pacmanCurrentIndex + width].classList.contains('ghost-lair') &&
                 !squares[pacmanCurrentIndex + width].classList.contains('wall') &&
@@ -88,7 +91,7 @@ function control(e) {
                 pacmanCurrentIndex += width
             break
         case 38:
-            console.log('pressed up')
+            //console.log('pressed up')
             if (
                 !squares[pacmanCurrentIndex - width].classList.contains('ghost-lair') &&
                 !squares[pacmanCurrentIndex - width].classList.contains('wall') &&
@@ -97,7 +100,7 @@ function control(e) {
                 pacmanCurrentIndex -= width
             break
         case 37:
-            console.log('pressed left')
+            //console.log('pressed left')
             if (
                 !squares[pacmanCurrentIndex - 1].classList.contains('ghost-lair') &&
                 !squares[pacmanCurrentIndex - 1].classList.contains('wall') &&
@@ -109,7 +112,7 @@ function control(e) {
             }
             break
         case 39:
-            console.log('pressed right')
+            //console.log('pressed right')
             if (
                 !squares[pacmanCurrentIndex + 1].classList.contains('ghost-lair') &&
                 !squares[pacmanCurrentIndex + 1].classList.contains('wall') &&
@@ -124,6 +127,8 @@ function control(e) {
     squares[pacmanCurrentIndex].classList.add('pacman')
     pacDotEaten()
     powerPelletEaten()
+    checkForWin()
+    checkForGameOver()
 }
 document.addEventListener('keyup', control)
 
@@ -155,8 +160,6 @@ function unScareGhosts() {
 }
 
 
-
-
 class Ghost {
     constructor(className, startIndex, speed) {
         this.className = className
@@ -174,7 +177,6 @@ const ghosts = [
     new Ghost('inky', 351, 300),
     new Ghost('clyde', 379, 500)
 ]
-
 //draw my ghosts onto my grid
 ghosts.forEach(ghost => {
     squares[ghost.currentIndex].classList.add(ghost.className)
@@ -185,10 +187,10 @@ ghosts.forEach(ghost => {
 ghosts.forEach(ghost => moveGhost(ghost))
 
 function moveGhost(ghost) {
-    console.log('moved ghost')
-    const directions = [-1, -width, +1,+width]
+    //console.log('moved ghost')
+    const directions = [-1, -width, +1, +width]
     let direction = directions[Math.floor(Math.random() * directions.length)]
-    console.log(direction)
+    //console.log(direction)
 
     ghost.timerId = setInterval(function () {
         //all our code
@@ -223,9 +225,65 @@ function moveGhost(ghost) {
             //re-add classnames of ghost.className and 'ghost' to the ghosts new postion  
             squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
         }
-
-
-
+        checkForGameOver()
     }, ghost.speed)
-
 }
+
+//check for game over
+function checkForGameOver() {
+    //if the square pacman is in contains a ghost AND the square does NOT contain a scared ghost 
+    if (
+        squares[pacmanCurrentIndex].classList.contains('ghost') &&
+        !squares[pacmanCurrentIndex].classList.contains('scared-ghost')
+    ) {
+        //for each ghost - we need to stop it moving
+        ghosts.forEach(ghost => clearInterval(ghost.timerId))
+        //remove eventlistener from our control function
+        document.removeEventListener('keyup', control)
+        //tell user the game is over   
+        scoreDisplay.innerHTML = 'You LOSE'
+        restartButton.style.display="flex"
+    }
+}
+
+//check for win
+function checkForWin() {
+    if (score === 274 || ((score>274) && (score%100===74))) {
+        //stop each ghost
+        ghosts.forEach(ghost => clearInterval(ghost.timerId))
+        //remove the eventListener for the control function
+        document.removeEventListener('keyup', control)
+        //tell our user we have won
+        scoreDisplay.innerHTML = 'You WON!'
+        restartButton.style.display = "flex"
+    }
+}
+
+restartButton.addEventListener('click',function(){
+    score=0;
+    restartButton.style.display = "none"
+    scoreDisplay.innerHTML=""
+
+    createBoard();
+
+    document.addEventListener('keyup', control)
+
+    squares[pacmanCurrentIndex].classList.remove('pacman')
+
+    ghosts.forEach(ghost => {
+        squares[ghost.currentIndex].classList.remove(ghost.className)
+        squares[ghost.currentIndex].classList.remove('ghost', 'scared-ghost')
+        ghost.currentIndex=ghost.startIndex
+    })
+
+    pacmanCurrentIndex = 490
+    squares[pacmanCurrentIndex].classList.add('pacman')
+
+    ghosts.forEach(ghost => {
+        squares[ghost.currentIndex].classList.add(ghost.className)
+        squares[ghost.currentIndex].classList.add('ghost')
+    })
+
+    //move the ghosts
+    ghosts.forEach(ghost => moveGhost(ghost))
+})

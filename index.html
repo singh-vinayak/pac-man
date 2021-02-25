@@ -1,13 +1,26 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h3>Score:<span id="score"></span></h3>
-    <div class="grid"></div>
+    <div class="container">
+        <div class="row-1">
+            <h3 id="score-row">Score:<span id="score"></span></h3>
+        </div>
+        <div class="row-2">
+            <div class="grid"></div>
+        </div>
+        <div class="row-3">
+            <button id="restartButton">Restart</button>
+        </div>
     <script src="index.js"></script>
+</div>
+    
 </body>
 
 </html>
