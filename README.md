@@ -1,8 +1,8 @@
 # pac-man
-Retro Pac Man game using JavaScript :D
+Retro Pac Man game using JavaScript :D<br>
 View <a href="https://vinayak-singh5302.github.io/pac-man">Here</a>
 
-I've kept minimalistic styling along with a few touches here and there, and will update the interface soon. 😁
+I've kept minimalistic styling along with a few touches here and there, and will update the interface soon. 😁<br>
 
 <strong>Inbuilt JavaScript functions I have used:</strong><br>
 <ul>
@@ -26,4 +26,4 @@ I've kept minimalistic styling along with a few touches here and there, and will
 </ul>
 
 Next steps:
-My next goal is to make a copy of this game and apply logic to the ghost moves. At the moment they are choosing a direction to go in at random. I want to apply logic that makes them move closer to wherever Pac-man is.
+My next goal is to make a copy of this game and apply logic to the ghost moves. At the moment they are choosing a direction to go in at random. I want to apply logic that makes them move closer to wherever Pac-man is.<br>
