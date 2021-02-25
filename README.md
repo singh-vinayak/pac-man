@@ -1,5 +1,5 @@
 # pac-man
-Retro Pac Man game using JavaScript :D<br>
+Retro Pac Man game using vanilla JavaScript,HTML and CSS :D<br>
 View <a href="https://vinayak-singh5302.github.io/pac-man">Here</a>
 
 I've kept minimalistic styling along with a few touches here and there, and will update the interface soon. 😁<br>
